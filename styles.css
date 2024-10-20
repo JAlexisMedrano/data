@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #fff;
+}
+
+#container {
+    display: flex;
+    height: 100vh;
+}
+
+#sidebar {
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.logo {
+    width: 100%;
+    max-width: 200px; /* Ajusta el tamaño según sea necesario */
+    margin-bottom: 20px; /* Espacio debajo del logo */
+}
+
+#category-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#category-list li {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#category-list li:hover,
+#category-list li.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#channel-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.carousel-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.card {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover,
+.card.focused {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px 5px 0 0;
+}
+
+.card h4 {
+    margin: 10px 0;
+    font-size: 1em;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        display: none;
+    }
+    
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+.hamburger {
+    display: none;
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
