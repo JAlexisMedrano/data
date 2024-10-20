@@ -1,4 +1,4 @@
-fetch('channels.json')
+fetch('https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/channels.json')
     .then(response => response.json())
     .then(data => {
         const container = document.getElementById('channel-container');
