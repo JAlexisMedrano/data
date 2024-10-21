@@ -44,28 +44,6 @@
                 "name":"Espn 4"
             }
         ],
-        "Deportes": [
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 2"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 3"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 4"
-            }
-        ],
         "Cine": [
             {
                 "name": "Canal de Deportes 1",
@@ -93,6 +71,28 @@
                 "link": "https://ejemplo.com/canal_deportes1"
             }
         ],
+        "Deportes": [
+            {
+                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "link": "https://ejemplo.com/canal_deportes1",
+                "name":"Espn"
+            },
+            {
+                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "link": "https://ejemplo.com/canal_deportes1",
+                "name":"Espn 2"
+            },
+            {
+                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "link": "https://ejemplo.com/canal_deportes1",
+                "name":"Espn 3"
+            },
+            {
+                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "link": "https://ejemplo.com/canal_deportes1",
+                "name":"Espn 4"
+            }
+        ],
         "Entretenimiento": [
             {
                 "name": "Canal de Deportes 1",
@@ -115,6 +115,28 @@
                 "name": "Canal de Deportes 1",
                 "image": "https://ejemplo.com/logo_deportes1.png",
                 "link": "https://ejemplo.com/canal_deportes1"
+            }
+        ],
+        "Canales 24/7": [
+            {
+                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "link": "https://ejemplo.com/canal_deportes1",
+                "name":"Espn"
+            },
+            {
+                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "link": "https://ejemplo.com/canal_deportes1",
+                "name":"Espn 2"
+            },
+            {
+                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "link": "https://ejemplo.com/canal_deportes1",
+                "name":"Espn 3"
+            },
+            {
+                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "link": "https://ejemplo.com/canal_deportes1",
+                "name":"Espn 4"
             }
         ]
     }
