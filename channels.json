@@ -24,30 +24,40 @@
         ],
         "Argentina": [
             {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn"
+                "image": "https://github.com/JAlexisMedrano/data/blob/main/assets/ARGENTINA/A24.jpg",
+                "link": "go:A24",
+                "name":"A24"
             },
             {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 2"
+                "image": "https://github.com/JAlexisMedrano/data/blob/main/assets/ARGENTINA/AMERICA.jpg",
+                "link": "go:america",
+                "name":"AMERICA"
             },
             {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 3"
+                "image": "https://github.com/JAlexisMedrano/data/blob/main/assets/ARGENTINA/C26.jpg",
+                "link": "go:c26",
+                "name":"CANAL 26"
             },
             {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "image": "https://github.com/JAlexisMedrano/data/blob/main/assets/ARGENTINA/C6ER.jpg",
+                "link": "go:c6er",
+                "name":"CANAL 6 ER"
+            },
+            {
+                "image": "https://github.com/JAlexisMedrano/data/blob/main/assets/ARGENTINA/TELEFE.jpg",
+                "link": "go:telefe",
+                "name":"TELEFE"
+            },
+            {
+                "image": "https://github.com/JAlexisMedrano/data/blob/main/assets/ARGENTINA/CRONICA.jpg",
                 "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 4"
+                "name":"CRONICA"
             }
         ],
         "Cine": [
             {
-                "name": "Canal de Deportes 1",
-                "image": "https://ejemplo.com/logo_deportes1.png",
+                "name": "LN",
+                "image": "https://github.com/JAlexisMedrano/data/blob/main/assets/ARGENTINA/LN.jpg",
                 "link": "https://ejemplo.com/canal_deportes1"
             },
             {
