@@ -2,9 +2,9 @@
     "categorias": {
         "Theo": [
             {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn"
+                "image": "https://image.tmdb.org/t/p/w780/sDoXpaKZmrzCSJH63zZvQQ9A7VK.jpg",
+                "link": "go:robot",
+                "name":"Robot Salvaje"
             }
         ],
         "Giuli": [
