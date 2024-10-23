@@ -1,0 +1,32 @@
+{
+    "categorias": {
+        "Theo": [
+            {
+                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
+                "link": "https://ejemplo.com/canal_deportes1",
+                "name":"Espn"
+            }
+        ],
+        "Giuli": [
+            {
+                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/A24.jpg",
+                "link": "go:A24",
+                "name":"A24"
+            }
+        ],
+      "Luca": [
+            {
+                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/A24.jpg",
+                "link": "go:A24",
+                "name":"A24"
+            }
+        ],
+      "Todos": [
+            {
+                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/A24.jpg",
+                "link": "go:A24",
+                "name":"A24"
+            }
+        ]
+    }
+}
