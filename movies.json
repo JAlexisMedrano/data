@@ -20,6 +20,12 @@
                 "link": "go:descen2",
                 "name":"Descendientes 2",
                 "background": "https://image.tmdb.org/t/p/original/mLihPIodzSenkZtiUauDy4e9hRs.jpg"
+            },
+            {
+                "image": "https://image.tmdb.org/t/p/original/1OtIhamt5JU1f8OajkJX3KMRqgQ.jpg",
+                "link": "go:descen3",
+                "name":"Descendientes 3",
+                "background": "https://image.tmdb.org/t/p/original/p0boFm5Z1HzO6LHMBuLYUM48iVV.jpg"
             }
         ],
       "Luca": [
