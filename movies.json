@@ -4,7 +4,8 @@
             {
                 "image": "https://image.tmdb.org/t/p/w780/sDoXpaKZmrzCSJH63zZvQQ9A7VK.jpg",
                 "link": "go:robot",
-                "name":"Robot Salvaje"
+                "name":"Robot Salvaje",
+                "background": "https://image.tmdb.org/t/p/original/62zw627mH74rng9zc4tFfaR54KW.jpg"
             }
         ],
         "Giuli": [
