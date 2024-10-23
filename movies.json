@@ -12,7 +12,13 @@
                 "image": "https://image.tmdb.org/t/p/w500/a1aDPDsXZKXgfBPddyv70FTc5Zw.jpg",
                 "link": "go:descen1",
                 "name":"Descendientes 1",
-                "background": "https://image.tmdb.org/t/p/original/y0ludgr1EvyXcT1lv2M0m621LQ6.jpg"
+                "background": "https://image.tmdb.org/t/p/original/y0ludgr1EvyXcT1lv2M0m621LQ6.jpg",
+            },
+            {
+                "image": "https://image.tmdb.org/t/p/w500/43dJFYdvGw4mgtdJg8UwttmyZtC.jpg",
+                "link": "go:descen2",
+                "name":"Descendientes 2",
+                "background": "https://image.tmdb.org/t/p/original/mLihPIodzSenkZtiUauDy4e9hRs.jpg",
             }
         ],
       "Luca": [
