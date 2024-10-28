@@ -1,0 +1,35 @@
+{
+  "categories": [
+    {
+      "name": "Acción",
+      "movies": [
+        {
+          "id": "1",
+          "title": "Movie 1",
+          "description": "Descripción de Movie 1",
+          "imageUrl": "https://example.com/image1.jpg",
+          "videoUrl": "https://example.com/video1.mp4"
+        },
+        {
+          "id": "2",
+          "title": "Movie 2",
+          "description": "Descripción de Movie 2",
+          "imageUrl": "https://example.com/image2.jpg",
+          "videoUrl": "https://example.com/video2.mp4"
+        }
+      ]
+    },
+    {
+      "name": "Comedia",
+      "movies": [
+        {
+          "id": "3",
+          "title": "Movie 3",
+          "description": "Descripción de Movie 3",
+          "imageUrl": "https://example.com/image3.jpg",
+          "videoUrl": "https://example.com/video3.mp4"
+        }
+      ]
+    }
+  ]
+}
