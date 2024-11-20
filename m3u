@@ -1,18 +1,12 @@
 #EXTM3U
-
-# Películas
 #EXTINF:-1 tvg-id="1" tvg-name="Robot Salvaje" tvg-logo="https://media.themoviedb.org/t/p/w220_and_h330_face/a0a7RC01aTa7pOnskgJb3mCD2Ba.jpg" group-title="Películas",Robot Salvaje
 https://zonamovie.live:8443/play/NmSuJjIvNP7KMRR60UScJSD45NWgufy5gtKsH5IWcZW-WsosB2N6qFzGjyVSD8UA
 #EXTINF:-1 tvg-id="2" tvg-name="Robot Salvaje (Opción 2)" group-title="Películas",Robot Salvaje (Opción 2)
 https://7d6vl6pn43.guardstorage.net/hls_3/HGsDRDWZhXcq25h93rwdtqj7U_7TyBAONpPZQKNdmRplIX_G1pQooGTzxnMj8XNT708tCAnqS2R8yXFellwBtfXRWvxAWGQ9fu6_XMaTpTzjFi7-XvGpJvBY4euD1AcN_HNKh7f7LjcZcbY2kf3Rpw/index-v1-a1.m3u8?sig=wmRNHfg5erLvIgTwqV0WJw&expires=1730834557
-
-# Series
 #EXTINF:-1 tvg-id="3" tvg-name="Serie Ejemplo - Temporada 1 Episodio 1" tvg-logo="https://example.com/serie.jpg" group-title="Series",Serie Ejemplo S1E1
 https://example.com/series/season1/episode1.m3u8
 #EXTINF:-1 tvg-id="4" tvg-name="Serie Ejemplo - Temporada 1 Episodio 2" group-title="Series",Serie Ejemplo S1E2
 https://example.com/series/season1/episode2.m3u8
-
-# TV en Vivo
 #EXTINF:-1 tvg-id="5" tvg-name="TNT Sports SD" tvg-logo="https://example.com/tntsports.png" group-title="TV en Vivo",TNT Sports SD
 https://cdn8.en-vivo.info/hotflix/tntsports/index.m3u8?token=ee7fa62b5a2c2f9cee7b268d1692152a1ebccf65-9eecbee2f058f540ac7d2808a5a7f1bd-1731920277-1731909477&remote=190.183.168.46
 #EXTINF:-1 tvg-id="6" tvg-name="ESPN Premium HD" group-title="TV en Vivo",ESPN Premium HD
