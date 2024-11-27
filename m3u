@@ -1,8 +1,8 @@
 #EXTM3U
+#EXTINF:-1 tvg-id="2" tvg-name="Paw patrol la pelicula" tvg-logo="https://image.tmdb.org/t/p/w780/ojsARUPhtbMAcA3dCR3UwcHW1wM.jpg" group-title="Cine",Paw patrol la pelicula
+https://y8tlqvihzpbs.cdn-centaurus.com/hls2/01/02222/84rdbxy6qcbe_n/master.m3u8?t=6lUeeIHz4tXq4ir-qGci76WIRiY0zDyQIza-mqqfkl4&s=1732725810&e=129600&f=11112825&srv=mzpd6mkfdima&i=0.4&sp=500&p1=mzpd6mkfdima&p2=mzpd6mkfdima&asn=20207
 #EXTINF:-1 tvg-id="1" tvg-name="Robot Salvaje" tvg-logo="https://media.themoviedb.org/t/p/w220_and_h330_face/a0a7RC01aTa7pOnskgJb3mCD2Ba.jpg" group-title="Cine",Robot Salvaje
 https://zonamovie.live:8443/play/NmSuJjIvNP7KMRR60UScJSD45NWgufy5gtKsH5IWcZW-WsosB2N6qFzGjyVSD8UA
-#EXTINF:-1 tvg-id="2" tvg-name="Paw patrol la pelicula" tvg-logo="https://image.tmdb.org/t/p/w780/ojsARUPhtbMAcA3dCR3UwcHW1wM.jpg" group-title="Cine",Paw patrol la pelicula
-https://delivery-node-ukng2l7do8aextso.voe-network.net/engine/hls2-c/01/09837/dvoru648xkby_,n,.urlset/master.m3u8?t=pe-zzxpcw8oHVnxIGRf-addtsnL2vwhSubn-HvZRraA&s=1732649515&e=14400&f=49189123&node=delivery-node-q57xpxulb1fqm6i0.voe-network.net&i=190.183&sp=2500&asn=20207
 #EXTINF:0, ROBOT SALVAJE
 https://zonamovie.live:8443/play/NmSuJjIvNP7KMRR60UScJSD45NWgufy5gtKsH5IWcZW-WsosB2N6qFzGjyVSD8UA
 #EXTINF:0, ROBOT SALVAJE opc 2
