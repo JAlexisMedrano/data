@@ -1,0 +1,3 @@
+#EXTM3U
+#EXTINF:-1,Tin soldier
+https://vod-ltweb.yamyday.com/vod/F2420C613DAB4C9DB479C3AFC57A4413_media.mp4?content_auth2=/vod/%3Ftag%3Dslb%26host%3Dvod-ltweb.yamyday.com%26app_id%3Dcom.global.latinowebs%26trans_id%3DNxTUw2PXRPk_IdEGTOqUv0Vv%26app_version%3D10102%26client_ip%3D34.150.155.40%26dev_id%3D02c5bc5c3c171458ceac3796f1033e60%26auth_id%3D24040153_com.global.latinowebs__3%26user_id%3D24040153%26expired%3D1756360021%26token%3D392960613482c12c89ed965a48dce52e&content_license2=tag%3Dslb%26scheme%3Dslb%26app_id%3Dcom.global.latinowebs%26media_code%3DF2420C613DAB4C9DB479C3AFC57A4413%26expired%3D1756360021%26token%3D2d5111a4b6a33b4147723580b1efa3a7
