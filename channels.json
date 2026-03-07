@@ -1,153 +1,28 @@
 {
-    "categorias": {
-        "Eventos": [
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 2"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 3"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 4"
-            }
-        ],
-        "Argentina": [
-            {
-                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/A24.jpg",
-                "link": "go:A24",
-                "name":"A24"
-            },
-            {
-                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/AMERICA.jpg",
-                "link": "go:america",
-                "name":"AMERICA"
-            },
-            {
-                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/C26.jpg",
-                "link": "go:c26",
-                "name":"CANAL 26"
-            },
-            {
-                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/C6ER.jpg",
-                "link": "go:c6er",
-                "name":"CANAL 6 ER"
-            },
-            {
-                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/TELEFE.jpg",
-                "link": "go:telefe",
-                "name":"TELEFE"
-            },
-            {
-                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/CRONICA.jpg",
-                "link": "go:cronica",
-                "name":"CRONICA"
-            },
-            {
-                "name": "LN",
-                "image": "https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/assets/ARGENTINA/LN.jpg",
-                "link": "go:ln"
-            }
-        ],
-        "Cine": [
-            {
-                "name": "Canal de Deportes 1",
-                "image": "https://ejemplo.com/logo_deportes1.png",
-                "link": "https://ejemplo.com/canal_deportes1"
-            },
-            {
-                "name": "Canal de Deportes 1",
-                "image": "https://ejemplo.com/logo_deportes1.png",
-                "link": "https://ejemplo.com/canal_deportes1"
-            },
-            {
-                "name": "Canal de Deportes 1",
-                "image": "https://ejemplo.com/logo_deportes1.png",
-                "link": "https://ejemplo.com/canal_deportes1"
-            },
-            {
-                "name": "Canal de Deportes 1",
-                "image": "https://ejemplo.com/logo_deportes1.png",
-                "link": "https://ejemplo.com/canal_deportes1"
-            }
-        ],
-        "Deportes": [
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 2"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 3"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 4"
-            }
-        ],
-        "Entretenimiento": [
-            {
-                "name": "Canal de Deportes 1",
-                "image": "https://ejemplo.com/logo_deportes1.png",
-                "link": "https://ejemplo.com/canal_deportes1"
-            },
-            {
-                "name": "Canal de Deportes 1",
-                "image": "https://ejemplo.com/logo_deportes1.png",
-                "link": "https://ejemplo.com/canal_deportes1"
-            }
-        ],
-        "Infantiles": [
-            {
-                "name": "Canal de Deportes 1",
-                "image": "https://ejemplo.com/logo_deportes1.png",
-                "link": "https://ejemplo.com/canal_deportes1"
-            },
-            {
-                "name": "Canal de Deportes 1",
-                "image": "https://ejemplo.com/logo_deportes1.png",
-                "link": "https://ejemplo.com/canal_deportes1"
-            }
-        ],
-        "Canales 24/7": [
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 2"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 3"
-            },
-            {
-                "image": "https://w7.pngwing.com/pngs/109/662/png-transparent-logo-page-footer-espn-magazine-television-text-photography-thumbnail.png",
-                "link": "https://ejemplo.com/canal_deportes1",
-                "name":"Espn 4"
-            }
-        ]
+  "version": "1.0",
+  "categories": [
+    {
+      "id": "noticias", "name": "Noticias", "icon": "📰",
+      "channels": [
+        { "id":1,"name":"CNN en Español","logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/CNN.svg/200px-CNN.svg.png","program":"Noticiero Internacional","quality":"HD","urls":["https://cnn-cnne.akamaized.net/hls/live/2038993/cnne/master.m3u8","https://live-hls-web-aja.getaj.net/AJA/index.m3u8"] },
+        { "id":2,"name":"DW Español","logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Deutsche_Welle_symbol_2012.svg/200px-Deutsche_Welle_symbol_2012.svg.png","program":"DW Noticias","quality":"HD","urls":["https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8","https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"] },
+        { "id":3,"name":"Al Jazeera","logo":"https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Al_Jazeera_English_logo.svg/200px-Al_Jazeera_English_logo.svg.png","program":"World News","quality":"HD","urls":["https://live-hls-web-aja.getaj.net/AJA/index.m3u8","https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"] },
+        { "id":4,"name":"France 24","logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/France_24_logo.svg/200px-France_24_logo.svg.png","program":"Noticias en directo","quality":"HD","urls":["https://static.france24.com/live/F24_ES_LO_HLS/live_web.m3u8","https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"] }
+      ]
+    },
+    {
+      "id": "ciencia", "name": "Ciencia", "icon": "🚀",
+      "channels": [
+        { "id":10,"name":"NASA TV","logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/200px-NASA_logo.svg.png","program":"ISS Live Feed","quality":"HD","urls":["https://nasa-i.akamaihd.net/hls/live/253565/NASA-NTV1-HLS/master.m3u8","https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"] }
+      ]
+    },
+    {
+      "id": "demos", "name": "Demos", "icon": "⚙️",
+      "channels": [
+        { "id":20,"name":"Big Buck Bunny","logo":"https://peach.blender.org/wp-content/uploads/bbb-splash.png","program":"HLS Demo · 1080p","quality":"1080p","urls":["https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8","https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"] },
+        { "id":21,"name":"Apple HLS","logo":"https://www.apple.com/ac/structured-data/images/open_graph_logo.png","program":"FMP4 Advanced","quality":"4K","urls":["https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8","https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"] },
+        { "id":22,"name":"DASH Demo","logo":"","program":"MPEG-DASH 4K BBB","quality":"4K","urls":["https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd","https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"] }
+      ]
     }
+  ]
 }
