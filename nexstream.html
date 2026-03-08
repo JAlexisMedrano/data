@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>NEXSTREAM</title>
+<title>NexTV</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.7/hls.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/4.7.4/dash.all.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -812,9 +812,16 @@ function exitNavMode(){plyNavMode=false;clearPlyFoc();}
 /* ══ STREAM ══ */
 function startLoad(url){
   showSpin(true);hideErr();destroy();qm.classList.remove('open');sm.classList.remove('open');
-  url=corsProxyUrl(url); // Android: proxy local / Navegador: proxy externo
+  // En Android: ExoPlayer maneja TODOS los formatos sin CORS
+  if(IS_ANDROID && typeof Android!=='undefined' && Android.exoPlay){
+    initExoBridge();
+    Android.exoPlay(url);
+    return;
+  }
+  // En navegador: pipeline normal con proxy externo
+  url=corsProxyUrl(url);
   const fmt=detectFmt(url);
-  if(fmt==='ts'){loadTS(url);return;} // .ts: manejo propio, no pasar por dash.js
+  if(fmt==='ts'){loadTS(url);return;}
   if(fmt==='hls'&&typeof Hls!=='undefined'&&Hls.isSupported()){loadHLS(url);return;}
   if(fmt==='dash'&&typeof dashjs!=='undefined'){loadDASH(url);return;}
   if(vid.canPlayType('application/vnd.apple.mpegurl')){vid.src=url;vid.play().catch(tryNext);showSpin(false);return;}
@@ -825,13 +832,13 @@ function startLoad(url){
    Si no, HLS.js puede reproducir segmentos .ts sueltos usando loadSource directo. */
 function loadTS(url){
   destroy();
-  // En Android: usar libVLC nativo (mismo motor que VLC de escritorio)
-  if(IS_ANDROID && typeof Android!=='undefined' && Android.vlcPlay){
-    initVlcBridge();
-    Android.vlcPlay(url);
+  // En Android: usar ExoPlayer nativo — soporta .ts, HLS, DASH sin CORS
+  if(IS_ANDROID && typeof Android!=='undefined' && Android.exoPlay){
+    initExoBridge();
+    Android.exoPlay(url);
     return;
   }
-  // En navegador: intentar directo, luego HLS.js con proxy blob
+  // En navegador: intentar directo, luego HLS.js con blob wrapper
   vid.src=url;vid.load();
   let ok=false;
   const onPlay=()=>{ok=true;showSpin(false);vid.removeEventListener('playing',onPlay);vid.removeEventListener('error',onErr);};
@@ -839,32 +846,37 @@ function loadTS(url){
   vid.addEventListener('playing',onPlay);vid.addEventListener('error',onErr);
   vid.play().catch(()=>{if(!ok){ok=true;loadTSviaHLS(url);}});
 }
-/* ══ BRIDGE VLC ══
-   libVLC corre como SurfaceView nativo sobre el WebView.
-   El HTML gestiona la UI (controles, overlay, guía) normalmente;
-   solo el video en sí se renderiza en la superficie VLC. */
-let _vlcActive=false;
-function initVlcBridge(){
-  if(_vlcActive) return;
-  _vlcActive=true;
-  // Eventos que libVLC manda al JS
-  window._vlcEvent=(type,data)=>{
+/* ══ BRIDGE EXOPLAYER ══
+   ExoPlayer corre como SurfaceView nativo sobre el WebView.
+   La UI completa (controles, overlay, guía) sigue siendo el HTML.
+   Solo el video se renderiza en la superficie nativa. */
+let _exoActive=false;
+function initExoBridge(){
+  if(_exoActive) return;
+  _exoActive=true;
+  window._exoEvent=(type,data)=>{
     if(type==='playing'){showSpin(false);hideLoadScreen();hideErr();setPPIcon(false);}
-    else if(type==='buffering'){showSpin(data<100);}
-    else if(type==='error'){showSpin(false);Android.vlcStop();_vlcActive=false;tryNext();}
-    else if(type==='stopped'){hideLoadScreen();}
-  };
-  window._vlcError=()=>{
-    showSpin(false);_vlcActive=false;tryNext();
+    else if(type==='buffering'){showSpin(true);}
+    else if(type==='ready'){showSpin(false);hideLoadScreen();}
+    else if(type==='paused'){setPPIcon(true);}
+    else if(type==='error'){
+      showSpin(false);
+      if(typeof Android!=='undefined') Android.exoStop();
+      _exoActive=false;
+      tryNext();
+    }
+    else if(type==='ended'){
+      if(typeof Android!=='undefined') Android.exoStop();
+      _exoActive=false;
+    }
   };
 }
-function destroyVlc(){
-  if(IS_ANDROID && typeof Android!=='undefined' && Android.vlcStop){
-    Android.vlcStop();
+function destroyExo(){
+  if(_exoActive && IS_ANDROID && typeof Android!=='undefined' && Android.exoStop){
+    Android.exoStop();
   }
-  _vlcActive=false;
-  window._vlcEvent=null;
-  window._vlcError=null;
+  _exoActive=false;
+  window._exoEvent=null;
 }
 function loadTSviaHLS(url){
   if(typeof Hls==='undefined'||!Hls.isSupported()){tryNext();return;}
@@ -937,18 +949,18 @@ function loadDASH(url){
   dp.on(dashjs.MediaPlayer.events.ERROR,()=>{clearTimeout(ft);if(!fb){fb=true;tryNext();}});
 }
 function tryNext(){if(!curCh)return;curUrlIdx++;if(curUrlIdx<curCh.urls.length){toast(`🔄 Señal ${curUrlIdx+1}/${curCh.urls.length}...`);startLoad(curCh.urls[curUrlIdx]);}else{showErr('Todas las señales fallaron.');showSpin(false);}}
-function destroy(){if(hlsI){try{hlsI.destroy();}catch(e){}hlsI=null;}if(dashI){try{dashI.destroy();}catch(e){}dashI=null;}destroyVlc();}
+function destroy(){if(hlsI){try{hlsI.destroy();}catch(e){}hlsI=null;}if(dashI){try{dashI.destroy();}catch(e){}dashI=null;}destroyExo();}
 function detectFmt(url){const u=url.toLowerCase().split('?')[0];if(u.endsWith('.m3u8')||u.includes('/hls/')||u.includes('playlist'))return'hls';if(u.endsWith('.ts')||u.includes('/ts/'))return'ts';if(u.endsWith('.mpd')||u.includes('dash'))return'dash';return isNative(url)?'native':'hls';}
 function isNative(url){const u=url.toLowerCase().split('?')[0];return u.endsWith('.mp4')||u.endsWith('.webm')||u.endsWith('.ogv');} // .ts handled via HLS
 
 /* ══ VIDEO EVENTS ══ */
 vid.addEventListener('waiting',()=>showSpin(true));vid.addEventListener('playing',()=>{showSpin(false);hideErr();hideLoadScreen();});vid.addEventListener('canplay',()=>{showSpin(false);hideLoadScreen();});vid.addEventListener('stalled',()=>showSpin(true));vid.addEventListener('error',()=>{showSpin(false);tryNext();});
 vid.addEventListener('play',()=>setPPIcon(false));vid.addEventListener('pause',()=>setPPIcon(true));
-// Play/pause unificado para VLC + HTML5
+// Play/pause unificado para ExoPlayer + HTML5
 function togglePlayPause(){
-  if(_vlcActive && IS_ANDROID && typeof Android!=='undefined'){
-    if(Android.vlcIsPlaying()){Android.vlcPause();setPPIcon(true);}
-    else{Android.vlcResume();setPPIcon(false);}
+  if(_exoActive && IS_ANDROID && typeof Android!=='undefined'){
+    if(Android.exoIsPlaying()){Android.exoPause();setPPIcon(true);}
+    else{Android.exoResume();setPPIcon(false);}
     flash();return;
   }
   if(vid.paused){vid.play();flash();}else{vid.pause();flash();}
