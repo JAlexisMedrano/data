@@ -5,12 +5,14 @@
       "image": "https://editorial.uefa.com/resources/02a0-1f7780933dc2-5c3b1af654f1-1000/16x9_finalissima_poster_1_v2.jpeg",
       "label": "EVENTO",
       "title": "Finalissima 2026",
-      "subtitle": "Texto descriptivo opcional",
+      "subtitle": "",
       "cta": "Ver más",
       "ctaUrl": "https://sitio.com"
     },
     {
-      "image": "https://…/banner2.jpg",
+      "image": "https://a3.espncdn.com/combiner/i?img=%2Fphoto%2F2026%2F0304%2Fr1623199_1296x729_16%2D9.jpg",
+      "label": "EVENTO",
+      "title": "F1 Temporada 2026",
       "ctaChannel": 3
     }
   ],
