@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>NexTV</title>
+<title>joel</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.7/hls.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/4.7.4/dash.all.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -311,7 +311,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--F
   <div id="topbar">
     <div class="logo" onclick="location.reload()">
       <div class="logo-mk">N</div>
-      <span class="logo-w">NexTV</span>
+      <span class="logo-w">NEXSTREAM</span>
     </div>
     <nav class="nav-tabs" id="navtabs"></nav>
     <div class="tb-r">
@@ -497,18 +497,42 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--F
    Cargado desde JSON raíz: "banners": [...]
 ══════════════════════════════════════════════ */
 /* ══ ANDROID PROXY ══
-   En Android WebView, todas las URLs de stream pasan por el proxy local
-   que corre en localhost. Esto elimina CORS completamente para .ts, .m3u8, etc. */
-const IS_ANDROID = typeof Android !== 'undefined' && Android.isAndroid?.();
+   En Android WebView el proxy local (localhost) elimina CORS para todos los streams.
+   xhrSetup/fetchSetup en HLS.js reescriben CADA request interno (fragmentos .ts, etc.) */
+const IS_ANDROID = typeof Android !== 'undefined' && !!Android.isAndroid?.();
 let _proxyPort = 0;
 if(IS_ANDROID){
-  try{ _proxyPort = Android.getProxyPort(); }catch(e){}
+  try{ _proxyPort = Android.getProxyPort(); console.log('Proxy port:',_proxyPort); }catch(e){ console.warn('No proxy port',e); }
 }
 function proxyUrl(url){
-  // Solo proxear URLs externas (http/https), no blobs ni file://
   if(!IS_ANDROID || !_proxyPort) return url;
+  if(!url || url.startsWith('blob:') || url.startsWith('data:') || url.startsWith('file:')) return url;
   if(!url.startsWith('http://') && !url.startsWith('https://')) return url;
+  // No proxear requests que ya van a localhost
+  if(url.startsWith('http://localhost')) return url;
   return 'http://localhost:' + _proxyPort + '/proxy?url=' + encodeURIComponent(url);
+}
+// xhrSetup para HLS.js: reescribe la URL de CADA request XHR interno
+function hlsXhrSetup(xhr, url){
+  // La URL ya viene seteada — necesitamos reabrirla con la URL proxeada
+  if(IS_ANDROID && _proxyPort && url && !url.startsWith('blob:') && !url.startsWith('http://localhost')){
+    xhr._proxiedUrl = proxyUrl(url);
+  }
+  xhr.timeout = 60000;
+}
+// pLoader: loader personalizado para HLS.js que proxea cada request
+function makeHlsLoader(defaultLoader){
+  return class ProxyLoader extends defaultLoader {
+    load(ctx, config, callbacks){
+      if(IS_ANDROID && _proxyPort){
+        const orig = ctx.url;
+        if(orig && !orig.startsWith('blob:') && !orig.startsWith('http://localhost')){
+          ctx.url = proxyUrl(orig);
+        }
+      }
+      super.load(ctx, config, callbacks);
+    }
+  };
 }
 
 const CFG={url:'https://raw.githubusercontent.com/JAlexisMedrano/data/refs/heads/main/channels.json',ovMs:4000,fbMs:4500};
@@ -760,18 +784,12 @@ function loadTSviaHLS(url){
   const blob=new Blob([fakeM3u8],{type:'application/vnd.apple.mpegurl'});
   const blobUrl=URL.createObjectURL(blob);
   // Usar HLS con timeout extendido y sin fallback automático para .ts
-  const hls=new Hls({
-    enableWorker:true,lowLatencyMode:false,
-    backBufferLength:90,maxBufferLength:60,
-    // timeouts generosos: el .ts puede ser un archivo grande
-    manifestLoadingTimeOut:3000,
-    levelLoadingTimeOut:3000,
-    fragLoadingTimeOut:60000,  // 60s para descargar el segmento
-    manifestLoadingMaxRetry:0,
-    levelLoadingMaxRetry:0,
-    fragLoadingMaxRetry:1,
-    xhrSetup:xhr=>{xhr.timeout=60000;}
-  });
+  const hls=new Hls(makeHlsCfg({
+    lowLatencyMode:false,maxBufferLength:60,
+    manifestLoadingTimeOut:3000,levelLoadingTimeOut:3000,
+    fragLoadingTimeOut:60000,
+    manifestLoadingMaxRetry:0,levelLoadingMaxRetry:0,fragLoadingMaxRetry:1
+  }));
   hlsI=hls;hls.loadSource(blobUrl);hls.attachMedia(vid);
   let ok=false;
   // MANIFEST_PARSED se dispara rapidísimo (blob local) — no usarlo como señal de éxito
@@ -794,8 +812,26 @@ function loadTSviaHLS(url){
     }
   });
 }
+function makeHlsCfg(extra){
+  const base={
+    enableWorker:true,lowLatencyMode:true,
+    backBufferLength:90,maxBufferLength:40,maxMaxBufferLength:120,
+    startFragPrefetch:true,
+    manifestLoadingTimeOut:CFG.fbMs,levelLoadingTimeOut:CFG.fbMs,
+    fragLoadingTimeOut:Math.max(CFG.fbMs*2, 30000),
+    manifestLoadingMaxRetry:1,
+    xhrSetup:xhr=>{xhr.timeout=60000;}
+  };
+  // En Android: inyectar loader personalizado que proxea cada URL de fragmento
+  if(IS_ANDROID && _proxyPort && typeof Hls!=='undefined'){
+    try{
+      base.loader = makeHlsLoader(Hls.DefaultConfig.loader);
+    }catch(e){ console.warn('ProxyLoader fallback',e); }
+  }
+  return Object.assign(base, extra||{});
+}
 function loadHLS(url){
-  const hls=new Hls({enableWorker:true,lowLatencyMode:true,backBufferLength:90,maxBufferLength:40,maxMaxBufferLength:120,startFragPrefetch:true,manifestLoadingTimeOut:CFG.fbMs,levelLoadingTimeOut:CFG.fbMs,fragLoadingTimeOut:CFG.fbMs*2,manifestLoadingMaxRetry:1,xhrSetup:xhr=>{xhr.timeout=CFG.fbMs;}});
+  const hls=new Hls(makeHlsCfg());
   hlsI=hls;hls.loadSource(url);hls.attachMedia(vid);
   let fb=false;const ft=setTimeout(()=>{if(!fb){fb=true;tryNext();}},CFG.fbMs);
   hls.on(Hls.Events.MANIFEST_PARSED,(_,d)=>{clearTimeout(ft);showSpin(false);vid.play().catch(()=>{});buildQMenu(d.levels.map((l,i)=>({i,label:l.height?`${l.height}p`:`Nivel ${i}`,bw:l.bitrate||0})));});
