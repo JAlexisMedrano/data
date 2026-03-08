@@ -143,8 +143,31 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--F
 #ls-logo .ls-fb{font-size:42px}
 #ls-name{font-size:18px;font-weight:700;color:rgba(240,244,255,.85);letter-spacing:.5px}
 #ls-prog{font-size:13px;color:var(--muted);margin-top:-12px}
-/* spinner animado en loading screen */
 #ls-spin{width:36px;height:36px;border-radius:50%;border:3px solid rgba(255,255,255,.1);border-top-color:var(--a);animation:sp .8s linear infinite;margin-top:4px}
+/* controles visibles durante la carga */
+#ls-controls{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px 24px;
+  background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,transparent 100%);
+}
+#ls-back{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;padding:10px 18px;color:#fff;cursor:pointer;
+  font-size:14px;font-weight:600;font-family:var(--F);
+  transition:background .2s;
+}
+#ls-back:hover{background:rgba(255,255,255,.2);}
+#ls-back svg{flex-shrink:0}
+#ls-ch-nav{display:flex;gap:10px;}
+.ls-nav-btn{
+  width:46px;height:46px;border-radius:12px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  color:#fff;cursor:pointer;display:grid;place-items:center;
+  font-size:20px;transition:background .2s;
+}
+.ls-nav-btn:hover{background:rgba(255,255,255,.22);}
 #pov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,rgba(0,0,0,.75) 0%,transparent 20%,transparent 58%,rgba(0,0,0,.95) 100%);opacity:0;transition:opacity .28s;z-index:10}
 #pov.v{opacity:1}
 .pt{display:flex;align-items:center;gap:13px;padding:22px 28px 0}
@@ -311,7 +334,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--F
   <div id="topbar">
     <div class="logo" onclick="location.reload()">
       <div class="logo-mk">N</div>
-      <span class="logo-w">NEXSTREAM</span>
+      <span class="logo-w">NexTV</span>
     </div>
     <nav class="nav-tabs" id="navtabs"></nav>
     <div class="tb-r">
@@ -371,6 +394,17 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--F
       <div id="ls-name">—</div>
       <div id="ls-prog">—</div>
       <div id="ls-spin"></div>
+      <!-- Controles accesibles mientras carga -->
+      <div id="ls-controls">
+        <button id="ls-back" onclick="closePlayer()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Volver
+        </button>
+        <div id="ls-ch-nav">
+          <button class="ls-nav-btn" title="Canal anterior" onclick="lsChPrev()">⬆</button>
+          <button class="ls-nav-btn" title="Canal siguiente" onclick="lsChNext()">⬇</button>
+        </div>
+      </div>
     </div>
     <div id="spin"><div class="sr"></div></div>
     <div id="err"><div class="ei">📡</div><div class="et">Sin señal</div><div class="es" id="esub">No se pudo conectar.</div><button class="er" id="btn-retry">Reintentar</button></div>
@@ -539,7 +573,7 @@ function makeHlsLoader(defaultLoader){
    Si tenés un proxy deployado (Railway/Render), configuralo acá.
    Todas las URLs de stream pasarán por él automáticamente.
    Dejá vacío ('') para desactivar. */
-const CORS_PROXY = 'https://iptv-proxy1-production.up.railway.app';  // ej: 'https://tu-proxy.railway.app'
+const CORS_PROXY = '';  // ej: 'https://tu-proxy.railway.app'
 
 function corsProxyUrl(url){
   // En Android usamos el proxy local (localhost)
@@ -753,6 +787,18 @@ function showLoadScreen(ch){
 }
 function hideLoadScreen(){
   $('loadscreen').classList.add('hide');
+}
+function lsChPrev(){
+  if(!curCh) return;
+  const idx = allCh.indexOf(curCh);
+  const prev = allCh[(idx - 1 + allCh.length) % allCh.length];
+  openPlayer(prev);
+}
+function lsChNext(){
+  if(!curCh) return;
+  const idx = allCh.indexOf(curCh);
+  const next = allCh[(idx + 1) % allCh.length];
+  openPlayer(next);
 }
 function closePlayer(){$('player').classList.remove('open');document.body.style.overflow='';closeGuide();destroy();vid.src='';clearTimeout(ovT);clearPlyFoc();plyNavMode=false;hideLoadScreen();}
 
