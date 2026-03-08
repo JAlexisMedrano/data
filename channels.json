@@ -1,5 +1,19 @@
 {
   "version": "1.0",
+  "banners": [
+    {
+      "image": "https://editorial.uefa.com/resources/02a0-1f7780933dc2-5c3b1af654f1-1000/16x9_finalissima_poster_1_v2.jpeg",
+      "label": "EVENTO",
+      "title": "Finalissima 2026",
+      "subtitle": "Texto descriptivo opcional",
+      "cta": "Ver más",
+      "ctaUrl": "https://sitio.com"
+    },
+    {
+      "image": "https://…/banner2.jpg",
+      "ctaChannel": 3
+    }
+  ],
   "categories": [
     {
       "id": "noticias", "name": "Noticias", "icon": "📰",
