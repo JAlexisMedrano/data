@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>joel</title>
+<title>NEXSTREAM</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.7/hls.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/4.7.4/dash.all.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -391,7 +391,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--F
         <button class="pbk" id="btn-back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
         <div class="pci"><div class="pcl" id="pcl"></div><div><div class="pcn" id="pcn">—</div><div class="pcp" id="pcp">—</div></div></div>
         <div class="psp"></div>
-        <div class="wm"><div class="wm-m">N</div><span class="wm-t">NEXSTREAM</span></div>
+        <div class="wm"><div class="wm-m">N</div><span class="wm-t">NexTV</span></div>
       </div>
       <div class="pctr">
         <button class="icb" id="btn-prev"><svg viewBox="0 0 24 24"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
@@ -763,17 +763,47 @@ function startLoad(url){
 /* .ts: algunos navegadores lo reproducen nativo (video/mp2t).
    Si no, HLS.js puede reproducir segmentos .ts sueltos usando loadSource directo. */
 function loadTS(url){
-  // Intentar reproducción directa — bypasea CORS si el servidor responde bien
-  // y evita que dash.js interfiera
-  destroy(); // asegurarse de que dash.js no esté corriendo
-  vid.src=url;
-  vid.load();
+  destroy();
+  // En Android: usar libVLC nativo (mismo motor que VLC de escritorio)
+  if(IS_ANDROID && typeof Android!=='undefined' && Android.vlcPlay){
+    initVlcBridge();
+    Android.vlcPlay(url);
+    return;
+  }
+  // En navegador: intentar directo, luego HLS.js con proxy blob
+  vid.src=url;vid.load();
   let ok=false;
   const onPlay=()=>{ok=true;showSpin(false);vid.removeEventListener('playing',onPlay);vid.removeEventListener('error',onErr);};
   const onErr=()=>{vid.removeEventListener('playing',onPlay);vid.removeEventListener('error',onErr);if(!ok){ok=true;loadTSviaHLS(url);}};
-  vid.addEventListener('playing',onPlay);
-  vid.addEventListener('error',onErr);
+  vid.addEventListener('playing',onPlay);vid.addEventListener('error',onErr);
   vid.play().catch(()=>{if(!ok){ok=true;loadTSviaHLS(url);}});
+}
+/* ══ BRIDGE VLC ══
+   libVLC corre como SurfaceView nativo sobre el WebView.
+   El HTML gestiona la UI (controles, overlay, guía) normalmente;
+   solo el video en sí se renderiza en la superficie VLC. */
+let _vlcActive=false;
+function initVlcBridge(){
+  if(_vlcActive) return;
+  _vlcActive=true;
+  // Eventos que libVLC manda al JS
+  window._vlcEvent=(type,data)=>{
+    if(type==='playing'){showSpin(false);hideLoadScreen();hideErr();setPPIcon(false);}
+    else if(type==='buffering'){showSpin(data<100);}
+    else if(type==='error'){showSpin(false);Android.vlcStop();_vlcActive=false;tryNext();}
+    else if(type==='stopped'){hideLoadScreen();}
+  };
+  window._vlcError=()=>{
+    showSpin(false);_vlcActive=false;tryNext();
+  };
+}
+function destroyVlc(){
+  if(IS_ANDROID && typeof Android!=='undefined' && Android.vlcStop){
+    Android.vlcStop();
+  }
+  _vlcActive=false;
+  window._vlcEvent=null;
+  window._vlcError=null;
 }
 function loadTSviaHLS(url){
   if(typeof Hls==='undefined'||!Hls.isSupported()){tryNext();return;}
@@ -846,13 +876,22 @@ function loadDASH(url){
   dp.on(dashjs.MediaPlayer.events.ERROR,()=>{clearTimeout(ft);if(!fb){fb=true;tryNext();}});
 }
 function tryNext(){if(!curCh)return;curUrlIdx++;if(curUrlIdx<curCh.urls.length){toast(`🔄 Señal ${curUrlIdx+1}/${curCh.urls.length}...`);startLoad(curCh.urls[curUrlIdx]);}else{showErr('Todas las señales fallaron.');showSpin(false);}}
-function destroy(){if(hlsI){try{hlsI.destroy();}catch(e){}hlsI=null;}if(dashI){try{dashI.destroy();}catch(e){}dashI=null;}}
+function destroy(){if(hlsI){try{hlsI.destroy();}catch(e){}hlsI=null;}if(dashI){try{dashI.destroy();}catch(e){}dashI=null;}destroyVlc();}
 function detectFmt(url){const u=url.toLowerCase().split('?')[0];if(u.endsWith('.m3u8')||u.includes('/hls/')||u.includes('playlist'))return'hls';if(u.endsWith('.ts')||u.includes('/ts/'))return'ts';if(u.endsWith('.mpd')||u.includes('dash'))return'dash';return isNative(url)?'native':'hls';}
 function isNative(url){const u=url.toLowerCase().split('?')[0];return u.endsWith('.mp4')||u.endsWith('.webm')||u.endsWith('.ogv');} // .ts handled via HLS
 
 /* ══ VIDEO EVENTS ══ */
 vid.addEventListener('waiting',()=>showSpin(true));vid.addEventListener('playing',()=>{showSpin(false);hideErr();hideLoadScreen();});vid.addEventListener('canplay',()=>{showSpin(false);hideLoadScreen();});vid.addEventListener('stalled',()=>showSpin(true));vid.addEventListener('error',()=>{showSpin(false);tryNext();});
-vid.addEventListener('play',()=>setPPIcon(false));vid.addEventListener('pause',()=>setPPIcon(true));vid.addEventListener('timeupdate',updProg);
+vid.addEventListener('play',()=>setPPIcon(false));vid.addEventListener('pause',()=>setPPIcon(true));
+// Play/pause unificado para VLC + HTML5
+function togglePlayPause(){
+  if(_vlcActive && IS_ANDROID && typeof Android!=='undefined'){
+    if(Android.vlcIsPlaying()){Android.vlcPause();setPPIcon(true);}
+    else{Android.vlcResume();setPPIcon(false);}
+    flash();return;
+  }
+  if(vid.paused){vid.play();flash();}else{vid.pause();flash();}
+}vid.addEventListener('timeupdate',updProg);
 function updProg(){if(isFinite(vid.duration)&&vid.duration>0){pf.style.width=((vid.currentTime/vid.duration)*100)+'%';const r=vid.duration-vid.currentTime;$('ptr').textContent='-'+fmt(r);$('ptl').textContent=fmt(vid.currentTime);}}
 function fmt(s){const m=Math.floor(s/60),ss=Math.floor(s%60);return`${m}:${String(ss).padStart(2,'0')}`;}
 
