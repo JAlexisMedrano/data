@@ -33,9 +33,9 @@
       ]
     },
     {
-      "id": "demos", "name": "Demos", "icon": "⚙️",
+      "id": "peliculas", "name": "Demos", "icon": "⚙️",
       "channels": [
-        { "id":20,"name":"Big Buck Bunny","logo":"https://peach.blender.org/wp-content/uploads/bbb-splash.png","program":"HLS Demo · 1080p","quality":"1080p","urls":["https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8","https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"] },
+        { "id":20,"name":"En un abrir y cerrar de ojos","logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnPz6w55p0W5WwvdpcbQGq6bB96x-hz2mgGg&s","program":"HLS Demo · 1080p","quality":"1080p","urls":["http://31.42.184.171:8080/movie/CarolinaMolina/wLbgCfjvZF4j/435158.mp4","https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"] },
         { "id":21,"name":"Apple HLS","logo":"https://www.apple.com/ac/structured-data/images/open_graph_logo.png","program":"FMP4 Advanced","quality":"4K","urls":["https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8","https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"] },
         { "id":22,"name":"DASH Demo","logo":"","program":"MPEG-DASH 4K BBB","quality":"4K","urls":["https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd","https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"] }
       ]
