@@ -1,0 +1,24 @@
+#EXTM3U x-tvg-url=""
+#EXTINF:-1 tvg-id="espn" tvg-name="[IZZI] ESPN" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_typeface.svg/320px-ESPN_typeface.svg.png" group-title="Deportes",[IZZI] ESPN
+#EXTVLCOPT:network-caching=300
+#EXTVLCOPT:clock-jitter=0
+#EXTVLCOPT:clock-synchro=0
+http://restreamlatam.online:80/play/HIYjj8R76NN3Wy1lKtOTD5uW8pnstLzPsJE5qX14HmYDC5-fyG4YnQVWteho3_6K/m3u8
+
+#EXTINF:-1 tvg-id="espn2" tvg-name="[IZZI] ESPN 2" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_typeface.svg/320px-ESPN_typeface.svg.png" group-title="Deportes",[IZZI] ESPN 2
+#EXTVLCOPT:network-caching=300
+#EXTVLCOPT:clock-jitter=0
+#EXTVLCOPT:clock-synchro=0
+http://restreamlatam.online:80/play/HIYjj8R76NN3Wy1lKtOTD5uW8pnstLzPsJE5qX14HmZGQf_TrZYTMWbcvkb1W_Hh/m3u8
+
+#EXTINF:-1 tvg-id="espn3" tvg-name="[IZZI] ESPN 3" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_typeface.svg/320px-ESPN_typeface.svg.png" group-title="Deportes",[IZZI] ESPN 3
+#EXTVLCOPT:network-caching=300
+#EXTVLCOPT:clock-jitter=0
+#EXTVLCOPT:clock-synchro=0
+http://restreamlatam.online:80/play/HIYjj8R76NN3Wy1lKtOTD5uW8pnstLzPsJE5qX14HmbSeOFnxCCAs5V2AY3WKsfy/m3u8
+
+#EXTINF:-1 tvg-id="espn4" tvg-name="[IZZI] ESPN 4" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_typeface.svg/320px-ESPN_typeface.svg.png" group-title="Deportes",[IZZI] ESPN 4
+#EXTVLCOPT:network-caching=300
+#EXTVLCOPT:clock-jitter=0
+#EXTVLCOPT:clock-synchro=0
+http://restreamlatam.online:80/play/HIYjj8R76NN3Wy1lKtOTD0_loMTpstTmK1T33w-R5JSlSLaEzuRr8tICt7lEPArN/m3u8
